@@ -1,0 +1,6 @@
+{
+	"appId": "app.music.com",
+	"appName": "App Music",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}
