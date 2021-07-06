@@ -1,0 +1,63 @@
+<!-- los estilos se pueden aplicar directo sin la necesidad del atrubuto class
+o con el, de la segunda manera se antemone la palabra ion -->
+<ion-content>
+  <figure class="ion-text-center ion-padding">
+    <img src="assets/icon/logo.png" alt="logo" />
+  </figure>
+  <form [formGroup]="loginForm" (ngSubmit)="loginUser(loginForm.value)">
+    <ion-item>
+      <ion-label>email</ion-label>
+      <ion-input
+        formControlName="email"
+        type="email"
+        placeholder="example@example.com"
+      ></ion-input>
+    </ion-item>
+
+    <div class="validation-error">
+      <ng-container *ngFor="let validation of validatorMessage.email">
+        <div
+          *ngIf="loginForm.get('email').hasError(validation.type) && (loginForm.get('email').dirty || loginForm.get('email').touched) "
+        >
+          {{validation.message}}
+        </div>
+      </ng-container>
+    </div>
+
+    <ion-item>
+      <ion-label>password</ion-label>
+      <ion-input formControlName="password" type="password"></ion-input>
+    </ion-item>
+
+    <div class="validation-error">
+      <ng-container *ngFor="let validation of validatorMessage.password">
+        <div
+          *ngIf="loginForm.get('password').hasError(validation.type) && (loginForm.get('password').dirty || loginForm.get('password').touched) "
+        >
+          {{validation.message}}
+        </div>
+      </ng-container>
+    </div>
+    {{errorMessage}}
+    <ion-button
+      type="submit"
+      expand="block"
+      shape="round"
+      color="success"
+      [disabled]="!loginForm.valid"
+    >
+      Iniciar sesion
+    </ion-button>
+  </form>
+</ion-content>
+<ion-footer>
+  <ion-button
+    (click)="goToRegister()"
+    expand="block"
+    fill="outline"
+    shape="round"
+    color="success"
+  >
+    Registrar
+  </ion-button>
+</ion-footer>
