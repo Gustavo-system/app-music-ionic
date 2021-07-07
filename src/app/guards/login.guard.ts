@@ -10,7 +10,7 @@ export class LoginGuard implements CanActivate {
   constructor(private storage: Storage, private navigate: Router) {}
   async canActivate() {
     this.storage.create();
-    const loginSuccess = await this.storage.get('userSuccess');
+    const loginSuccess = await this.storage.get('loginSuccess');
     if(loginSuccess){
       return true;
     }
